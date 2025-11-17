@@ -95,7 +95,6 @@ class formSanPham(tk.Toplevel):
             self.NapDuLieu()
 
     def SetDanhMuc(self):
-        # Load ComboBox và lưu mapping ID-Name
         query = "SELECT * FROM DANHMUC"
         self.categories_data = []
         try:
@@ -114,7 +113,7 @@ class formSanPham(tk.Toplevel):
         except Exception as ex:
             messagebox.showerror("Lỗi", "Lỗi load danh mục: " + str(ex))
 
-    def get_selected_madm(self):
+    def get_selected_madm(self): 
         # Helper: Lấy MADM từ tên đang chọn trong ComboBox
         selected_name = self.cboDanhMuc.get()
         for item in self.categories_data:
@@ -122,7 +121,7 @@ class formSanPham(tk.Toplevel):
                 return item["id"]
         return None
 
-    def NapDuLieu(self):
+    def NapDuLieu(self): # Nạp dữ liệu sản phẩm theo danh mục đã chọn
         madm = self.get_selected_madm()
         if not madm: return
 
@@ -147,7 +146,6 @@ class formSanPham(tk.Toplevel):
         self.NapDuLieu()
 
     def check_empty_click(self, event):
-        # Mô phỏng GridSanPham_BoChon (HitTest)
         # Nếu click vào vùng không có item, Treeview trả về item rỗng
         item = self.GridSanPham.identify_row(event.y)
         if not item:
@@ -181,12 +179,12 @@ class formSanPham(tk.Toplevel):
 
         # Radio Button
         trang_thai = vals[4]
-        # Logic check chuỗi "Còn bán" hay "Ngừng bán"
+        # Logic check chuỗi "Còn bán" hay "Hết"
         # (C# logic: rdoCon.Checked = true if "Còn bán", else rdoHet)
         if "Còn bán" in str(trang_thai):
             self.var_status.set("Còn bán")
         else:
-            self.var_status.set("Ngừng bán")
+            self.var_status.set("Hết")
 
         self.btnThem['state'] = 'disabled'
         self.btnCapNhat['state'] = 'normal'
@@ -247,9 +245,9 @@ class formSanPham(tk.Toplevel):
         self.txtTen.delete(0, tk.END)
         self.reset_form_state() # Reset về trạng thái thêm
 
-    def CapNhatSanPham(self):
+    def CapNhatSanPham(self): #Cập nhật sản phẩm
         selected = self.GridSanPham.selection()
-        if not selected: return
+        if not selected: return # Không có dòng nào được chọn
         
         # Lấy MASP từ dòng đang chọn (không cho sửa MASP)
         masp = self.GridSanPham.item(selected[0])['values'][0]

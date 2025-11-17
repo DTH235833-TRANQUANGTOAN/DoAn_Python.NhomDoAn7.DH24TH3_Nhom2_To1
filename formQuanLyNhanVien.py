@@ -169,7 +169,7 @@ class formQuanLyNhanVien(tk.Toplevel):
                 vals = self.GridNhanVien.item(item)['values']
                 
                 # Kiểm tra null (giả lập logic đếm cell null)
-                if not vals[0] or not vals[1]: # Check cơ bản MaNV, TenNV
+                if not vals[0] or not vals[1]: # Check cơ bản MaNV, TenNV là ko dc null
                     messagebox.showerror("Lỗi", "Dữ liệu nhân viên không được để trống!")
                     return
 

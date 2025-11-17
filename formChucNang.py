@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import pyodbc
-from DuLieuChung import SharedVariables  # Đã sửa thành DuLieuChung
+from DuLieuChung import SharedVariables  
 
 class formChucNang(tk.Toplevel):
     def __init__(self, parent=None):
@@ -33,7 +33,7 @@ class formChucNang(tk.Toplevel):
         self.btnNhapNguyenLieu = tk.Button(self, text="Nhập Nguyên liệu", **btn_style, command=self.btnNhapNguyenLieu_Click)
         self.btnNhapNguyenLieu.place(x=278, y=77, width=167, height=74)
 
-        self.btnQuanLyNhanVien = tk.Button(self, text="Quản lý", **btn_style, command=self.btnQuanLyNhanVien_Click)
+        self.btnQuanLyNhanVien = tk.Button(self, text="Quản lý", **btn_style, command=self.btnQuanLyNhanVien_Click) 
         self.btnQuanLyNhanVien.place(x=451, y=77, width=167, height=74)
 
         self.btnDanhSachSanPham = tk.Button(self, text="Danh Sách sản phẩm", **btn_style, command=self.btnDanhSachSanPham_Click)
@@ -70,13 +70,12 @@ class formChucNang(tk.Toplevel):
             print(f"Lỗi load chức vụ: {ex}")
 
         # Phân quyền
-        if chucVu == "Quản lý" or chucVu == "Quản Lý": # Python phân biệt hoa thường nên check cả 2
+        if chucVu == "Quản lý" or chucVu == "Quản Lý": # Python phân biệt hoa thường nên check cả 2 (để phòng)
             self.btnQuanLyNhanVien['state'] = 'normal'
         else:
             self.btnQuanLyNhanVien['state'] = 'disabled'
 
-    # --- CÁC HÀM SỰ KIỆN GỌI FORM CON (Đã cập nhật đầy đủ) ---
-
+    #gọi form khác
     def btnBanHang_Click(self):
         try:
             from formBanHang import Form3

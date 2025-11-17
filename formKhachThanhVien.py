@@ -49,7 +49,7 @@ class formKhachThanhVien(tk.Toplevel):
         # Bind sự kiện chọn dòng
         self.GridKhachHang.bind("<<TreeviewSelect>>", self.on_row_select)
 
-        # --- Vùng Edit (Để thay thế việc sửa trực tiếp trên Grid) ---
+        # --- Vùng Edit (Để thay thế việc sửa trực tiếp trên Grid) --- 
         edit_frame = tk.LabelFrame(self, text="Thông tin chi tiết (Sửa/Thêm)")
         edit_frame.place(x=12, y=450, width=1132, height=150)
 

@@ -61,25 +61,6 @@ class formQuanLyKho(tk.Toplevel):
         except Exception as ex:
             messagebox.showerror("Lỗi", "Lỗi kết nối cơ sở dữ liệu: " + str(ex))
 
-    # Hàm này tồn tại trong C# nhưng không nối vào nút nào, mình vẫn giữ lại logic
-    def capnhat(self):
-        try:
-            conn = pyodbc.connect(SharedVariables.connectionString)
-            cursor = conn.cursor()
-            
-            for item in self.GridKho.get_children():
-                vals = self.GridKho.item(item)['values']
-                maNL = str(vals[0])
-                soLuong = str(vals[3]) # Cột số lượng là index 3
-                
-                query = "UPDATE TonKho SET SOLUONGTON = ? WHERE MANGUYENLIEU = ?"
-                cursor.execute(query, (soLuong, maNL))
-            
-            conn.commit()
-            conn.close()
-            messagebox.showinfo("Thông báo", "Cập nhật kho thành công!")
-        except Exception as ex:
-            messagebox.showerror("Lỗi", str(ex))
-
+    
     def btnThoat_Click(self):
         self.destroy()

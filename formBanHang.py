@@ -11,7 +11,7 @@ class Form3(tk.Toplevel):
         self.parent = parent
         self.InitializeComponent()
         
-        # Data Tables (Cache dữ liệu để xử lý nhanh như DataTable trong C#)
+        # Data Tables (bảng dữ liệu ảo)
         self._dtSanPham = [] 
         self._dtKhachHang = []
         
@@ -45,14 +45,14 @@ class Form3(tk.Toplevel):
         self.btnThoat.place(x=784, y=147)
 
         # --- Khu vực Grid (Thay thế DataGridView) ---
-        # Vì Tkinter Treeview không sửa trực tiếp được, ta làm vùng nhập liệu giả lập
+        # Vì Tkinter Treeview ko sửa trực tiếp được, chế vùng nhập liệu giả lập
         input_frame = tk.LabelFrame(self, text="Chọn sản phẩm thêm vào giỏ")
         input_frame.place(x=12, y=218, width=1132, height=80)
 
         tk.Label(input_frame, text="Sản phẩm:").place(x=10, y=20)
         self.cboSanPham_Input = ttk.Combobox(input_frame, width=35)
         self.cboSanPham_Input.place(x=80, y=20)
-        # Event khi chọn SP để cập nhật giá (giống logic Grid1_ThayDoi)
+        # Event khi chọn SP để cập nhật giá 
         self.cboSanPham_Input.bind("<<ComboboxSelected>>", self.on_product_select)
 
         tk.Label(input_frame, text="Số lượng:").place(x=350, y=20)
@@ -250,7 +250,7 @@ class Form3(tk.Toplevel):
                 cursor.execute(sql_ct, (maHD, masp, sl, dg, tt))
 
             # 3. Update DiemTichLuy
-            if ma_kh:
+            if ma_kh: # Nếu là khách thành viên mới cập nhật điểm
                 sql_diem = "UPDATE KhachThanhVien SET DIEMTICHLUY = DIEMTICHLUY + ? WHERE MAKH = ?"
                 cursor.execute(sql_diem, (diemThuong, ma_kh))
 
@@ -262,8 +262,8 @@ class Form3(tk.Toplevel):
             self.txtThanhTien.delete(0, tk.END); self.txtThanhTien.insert(0, "0")
 
         except Exception as ex:
-            if conn: conn.rollback() # Rollback nếu lỗi
-            messagebox.showerror("Lỗi DB", str(ex))
+            if conn: conn.rollback() # Rollback nếu lỗi xảy ra
+            messagebox.showerror("Lỗi DB", str(ex)) # Hiển thị lỗi do CSDL
         finally:
             if conn: conn.close()
 

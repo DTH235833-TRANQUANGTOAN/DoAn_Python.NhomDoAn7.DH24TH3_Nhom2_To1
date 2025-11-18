@@ -12,10 +12,9 @@ class formQuanLyHoaDon(tk.Toplevel):
 
     def InitializeComponent(self):
         self.title("Quản Lý Hóa Đơn")
-        self.geometry("1156x700") # Tăng chiều cao để chứa 2 bảng
+        self.geometry("1156x700") 
         SharedVariables.set_icon(self)
 
-        # --- PHẦN 1: DANH SÁCH HÓA ĐƠN ---
         self.label1 = tk.Label(self, text="DANH SÁCH HÓA ĐƠN", font=("Segoe UI", 20, "bold"), fg="blue")
         self.label1.place(x=35, y=10)
 
@@ -50,7 +49,6 @@ class formQuanLyHoaDon(tk.Toplevel):
         # BIND EVENT: Khi chọn dòng ở bảng trên -> Load bảng dưới
         self.GridHoaDon.bind("<<TreeviewSelect>>", self.on_invoice_select)
 
-        # --- PHẦN 2: CHI TIẾT HÓA ĐƠN (MỚI) ---
         tk.Label(self, text="CHI TIẾT HÓA ĐƠN", font=("Segoe UI", 16, "bold"), fg="green").place(x=35, y=340)
 
         # GridChiTiet (Treeview)

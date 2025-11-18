@@ -1,4 +1,3 @@
-# formBanHang.py
 import tkinter as tk
 from tkinter import ttk, messagebox
 import pyodbc
@@ -44,8 +43,8 @@ class Form3(tk.Toplevel):
         self.btnThoat = tk.Button(self, text="Hủy", width=20, height=2, command=self.btnHuy_Click)
         self.btnThoat.place(x=784, y=147)
 
-        # --- Khu vực Grid (Thay thế DataGridView) ---
-        # Vì Tkinter Treeview ko sửa trực tiếp được, chế vùng nhập liệu giả lập
+        
+        #vùng nhập dữ liệu
         input_frame = tk.LabelFrame(self, text="Chọn sản phẩm thêm vào giỏ")
         input_frame.place(x=12, y=218, width=1132, height=80)
 
@@ -58,7 +57,6 @@ class Form3(tk.Toplevel):
         tk.Label(input_frame, text="Số lượng:").place(x=350, y=20)
         self.txtSoLuong_Input = tk.Entry(input_frame, width=10)
         self.txtSoLuong_Input.place(x=420, y=20)
-        self.txtSoLuong_Input.bind("<KeyRelease>", self.on_quantity_change) # Tính thành tiền tạm
 
         tk.Label(input_frame, text="Đơn giá:").place(x=520, y=20)
         self.lblDonGia_Display = tk.Label(input_frame, text="0", fg="blue")
@@ -143,17 +141,13 @@ class Form3(tk.Toplevel):
         except Exception as ex:
             messagebox.showerror("Lỗi", "Lỗi tải dữ liệu: " + str(ex))
 
-    # --- Logic xử lý Grid (Thay thế Events Grid1_ThayDoi) ---
+    # --- Logic xử lý Grid ( khi chọn sản phẩm, thay đổi số lượng ) ---
     def on_product_select(self, event):
         ten_sp = self.cboSanPham_Input.get()
         sp = next((s for s in self._dtSanPham if s["TENSP"] == ten_sp), None)
         if sp:
             self.lblDonGia_Display.config(text=f"{sp['GIABAN']:,.0f}")
             self.txtSoLuong_Input.focus()
-
-    def on_quantity_change(self, event):
-        # Chỉ để UX tốt hơn, không bắt buộc
-        pass
 
     def add_to_grid(self):
         ten_sp = self.cboSanPham_Input.get()
@@ -178,13 +172,13 @@ class Form3(tk.Toplevel):
                     break
             
             if existing_item:
-                # Nếu trùng thì hỏi update hoặc báo lỗi tùy logic. Ở đây mình update luôn cho tiện
+                # Nếu trùng thì update số lượng và thành tiền
                 self.Grid1.item(existing_item, values=(ten_sp, sl, f"{gia:,.0f}", f"{thanh_tien:,.0f}"))
             else:
                 self.Grid1.insert("", tk.END, values=(ten_sp, sl, f"{gia:,.0f}", f"{thanh_tien:,.0f}"))
             
             self.CalculateTotal()
-            # Reset input
+            # Reset input sau khi thêm
             self.cboSanPham_Input.set("")
             self.txtSoLuong_Input.delete(0, tk.END)
             self.lblDonGia_Display.config(text="0")
@@ -227,7 +221,7 @@ class Form3(tk.Toplevel):
         conn = None
         try:
             conn = pyodbc.connect(SharedVariables.connectionString)
-            cursor = conn.cursor() # Mặc định pyodbc dùng transaction, phải commit mới lưu
+            cursor = conn.cursor() # Mặc định pyodbc dùng transaction, phải commit mới lưu vào DB
             
             # 1. Insert HoaDon
             sql_hd = "INSERT INTO HoaDon (MAHD, MANV, MAKH, NGAYLAP, TONGTIEN) VALUES (?, ?, ?, ?, ?)"

@@ -1,4 +1,3 @@
-# formNhapNguyenLieu.py
 import tkinter as tk
 from tkinter import ttk, messagebox
 import pyodbc
@@ -8,12 +7,11 @@ class formNhapNguyenLieu(tk.Toplevel):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.InitializeComponent()
-        self.formNhapNguyenLieu_Load()
 
     def InitializeComponent(self):
         self.title("Nhập Nguyên Liệu")
         SharedVariables.set_icon(self)
-        self.geometry("1180x550") # Tăng chiều cao để chứa vùng nhập
+        self.geometry("1180x550") 
 
         # Label Title
         self.label1 = tk.Label(self, text="NHẬP NGUYÊN LIỆU", font=("Segoe UI", 25))
@@ -29,8 +27,7 @@ class formNhapNguyenLieu(tk.Toplevel):
         self.btnThoat = tk.Button(self, text="Thoát", width=20, height=2, command=self.btnThoat_Click)
         self.btnThoat.place(x=906, y=26)
 
-        # --- Vùng Nhập liệu (Thêm dòng vào Grid) ---
-        # Vì Treeview không nhập trực tiếp, ta dùng vùng này để add vào list
+        #Vùng Nhập liệu (Thêm dòng vào Grid)
         input_frame = tk.LabelFrame(self, text="Thông tin nguyên liệu nhập")
         input_frame.place(x=17, y=80, width=600, height=150)
 
@@ -64,10 +61,6 @@ class formNhapNguyenLieu(tk.Toplevel):
         self.GridNhap.column("SoLuong", width=150)
 
         self.GridNhap.place(x=17, y=240, width=1132, height=253)
-
-    def formNhapNguyenLieu_Load(self):
-        # Code gốc load Icon, Python bỏ qua
-        pass
 
     def add_to_grid(self):
         # Lấy dữ liệu từ ô nhập
@@ -125,14 +118,8 @@ class formNhapNguyenLieu(tk.Toplevel):
                 rows = cursor.fetchall() # Lấy tất cả các dòng khớp
 
                 if len(rows) > 0:
-                    # Logic check trùng tên/mã y hệt C#
+                    # Logic check trùng tên/mã
                     maTenTrung = False
-                    
-                    # Kiểm tra xem có dòng nào khớp cả tên lẫn mã logic không
-                    # (Do câu SQL dùng OR, nên có thể khớp mã nhưng khác tên hoặc ngược lại)
-                    # Tuy nhiên logic C# gốc: nếu tìm thấy bất cứ dòng nào khớp mã OR tên -> check tiếp
-                    
-                    # Đơn giản hóa logic Python để giống C#:
                     # Nếu tìm thấy dòng khớp Mã và Tên (trong DB, row[0] là TENNGUYENLIEU)
                     match_exact = False
                     for r in rows:

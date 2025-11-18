@@ -1,4 +1,3 @@
-# formLogin.py
 import tkinter as tk # Thư viện giao diện đồ họa
 from tkinter import messagebox # Thư viện hiển thị hộp thoại
 import pyodbc # Thư viện kết nối cơ sở dữ liệu
@@ -46,7 +45,6 @@ class Form1(tk.Tk): # Form chính kế thừa từ tk.Tk là cửa sổ gốc ma
         self.btnThoat.place(x=365, y=208, width=153, height=63)
 
     def Form1_Load(self):
-        # Code gốc load Icon, trong Python có thể bỏ qua hoặc dùng self.iconbitmap
         pass
 
     def KiemTraDangNhap(self, taiKhoan, matKhau):

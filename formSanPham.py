@@ -8,7 +8,7 @@ class formSanPham(tk.Toplevel):
         super().__init__(parent)
         self.parent = parent
         # List lưu trữ mapping giữa Tên DM (hiển thị) và Mã DM (giá trị)
-        # Cấu trúc: [{"id": "DM01", "name": "Cafe"}, ...]
+        # Cấu trúc: [{"id": "DM01", "name": "Cafe"}, ...] 
         self.categories_data = [] 
         
         self.InitializeComponent()
@@ -82,7 +82,7 @@ class formSanPham(tk.Toplevel):
         
         # Bind sự kiện chọn dòng
         self.GridSanPham.bind("<<TreeviewSelect>>", self.GridSanPham_CellClick)
-        # Bind click vùng trống để bỏ chọn (Mô phỏng HitTest)
+        # Bind click vùng trống để bỏ chọn
         self.GridSanPham.bind("<Button-1>", self.check_empty_click)
 
     def formSanPham_Load(self):
@@ -215,7 +215,7 @@ class formSanPham(tk.Toplevel):
         tensp = self.txtTen.get()
         giaban_str = self.txtGiaBan.get()
         
-        # Validate Giá
+        # Validate Giá bán
         try:
             giaban = float(giaban_str)
         except:

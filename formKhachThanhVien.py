@@ -1,4 +1,3 @@
-# formKhachThanhVien.py
 import tkinter as tk
 from tkinter import ttk, messagebox
 import pyodbc
@@ -14,7 +13,7 @@ class formKhachThanhVien(tk.Toplevel):
     def InitializeComponent(self):
         self.title("Khách Thành Viên")
         SharedVariables.set_icon(self)
-        self.geometry("1162x650") # Tăng chiều cao chút để chứa vùng Edit
+        self.geometry("1162x650") 
 
         # Label Title
         tk.Label(self, text="KHÁCH HÀNG", font=("Segoe UI", 25)).place(x=50, y=17)
@@ -49,7 +48,7 @@ class formKhachThanhVien(tk.Toplevel):
         # Bind sự kiện chọn dòng
         self.GridKhachHang.bind("<<TreeviewSelect>>", self.on_row_select)
 
-        # --- Vùng Edit (Để thay thế việc sửa trực tiếp trên Grid) --- 
+        # --- Vùng Edit 
         edit_frame = tk.LabelFrame(self, text="Thông tin chi tiết (Sửa/Thêm)")
         edit_frame.place(x=12, y=450, width=1132, height=150)
 

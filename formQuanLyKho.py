@@ -60,7 +60,5 @@ class formQuanLyKho(tk.Toplevel):
             conn.close()
         except Exception as ex:
             messagebox.showerror("Lỗi", "Lỗi kết nối cơ sở dữ liệu: " + str(ex))
-
-    
     def btnThoat_Click(self):
         self.destroy()

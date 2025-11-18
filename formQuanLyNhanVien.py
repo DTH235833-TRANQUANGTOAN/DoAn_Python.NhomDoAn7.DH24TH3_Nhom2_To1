@@ -1,4 +1,3 @@
-# formQuanLyNhanVien.py
 import tkinter as tk
 from tkinter import ttk, messagebox
 import pyodbc
@@ -14,7 +13,7 @@ class formQuanLyNhanVien(tk.Toplevel):
     def InitializeComponent(self):
         self.title("QuanLyNhanVien")
         SharedVariables.set_icon(self)
-        self.geometry("1156x720") # Tăng chiều cao để chứa vùng nhập liệu
+        self.geometry("1156x720")
 
         # Label Title
         self.label1 = tk.Label(self, text="NHÂN VIÊN", font=("Segoe UI", 25))

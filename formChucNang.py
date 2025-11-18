@@ -11,7 +11,7 @@ class formChucNang(tk.Toplevel):
         self.Form2_Load()
 
     def InitializeComponent(self):
-        self.title("BanHang")
+        self.title("Chức năng")
         SharedVariables.set_icon(self)
         self.geometry("955x502")
         self.configure(bg="Beige")

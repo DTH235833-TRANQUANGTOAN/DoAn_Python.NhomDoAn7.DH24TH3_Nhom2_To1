@@ -14,14 +14,14 @@ class formChucNang(tk.Toplevel):
         self.title("Chức năng")
         SharedVariables.set_icon(self)
         self.geometry("955x502")
-        self.configure(bg="Beige")
+        self.configure(bg="Beige") # Màu nền Beige
 
         # Label Title
         self.label1 = tk.Label(self, text="CHỨC NĂNG", font=("Segoe UI", 15), bg="Beige")
         self.label1.place(x=378, y=9)
 
         # Label Chuc Vu
-        self.label2 = tk.Label(self, text="chức vụ của bạn là: ...", font=("Segoe UI", 12), bg="Beige")
+        self.label2 = tk.Label(self, text="chức vụ của bạn là: ...", font=("Segoe UI", 12), bg="Beige") # bg la m màu nền trùng với form
         self.label2.place(x=637, y=42)
 
         # Buttons style
@@ -57,8 +57,8 @@ class formChucNang(tk.Toplevel):
         
         try:
             conn = pyodbc.connect(SharedVariables.connectionString)
-            cursor = conn.cursor()
-            cursor.execute(queryCHUCVU, (SharedVariables.MaNV,))
+            cursor = conn.cursor() 
+            cursor.execute(queryCHUCVU, (SharedVariables.MaNV,)) 
             row = cursor.fetchone()
             
             if row:

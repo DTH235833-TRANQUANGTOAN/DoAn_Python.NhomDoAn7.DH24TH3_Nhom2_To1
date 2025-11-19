@@ -113,7 +113,7 @@ class formNhapNguyenLieu(tk.Toplevel):
                 soLuong = int(vals[3])
 
                 # 1. Kiểm tra tồn tại trong kho
-                check_sql = "SELECT TENNGUYENLIEU, SOLUONGTON FROM TonKho WHERE MANGUYENLIEU = ? OR TENNGUYENLIEU = ?"
+                check_sql = "SELECT TENNGUYENLIEU, SOLUONGTON FROM TonKho WHERE MANGUYENLIEU = ? OR TENNGUYENLIEU = ?" #? là tham số 
                 cursor.execute(check_sql, (maNL, tenNL))
                 rows = cursor.fetchall() # Lấy tất cả các dòng khớp
 

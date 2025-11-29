@@ -8,6 +8,7 @@ class Form1(tk.Tk): # Form chính kế thừa từ tk.Tk là cửa sổ gốc ma
         super().__init__()
         self.InitializeComponent()
         self.Form1_Load()
+        
 
     def InitializeComponent(self):
         # Cấu hình Form
@@ -44,7 +45,15 @@ class Form1(tk.Tk): # Form chính kế thừa từ tk.Tk là cửa sổ gốc ma
         self.btnThoat = tk.Button(self, text="Thoát", font=("Segoe UI", 12), command=self.btnThoat_Click)
         self.btnThoat.place(x=365, y=208, width=153, height=63)
 
+    def Vi_TrI_Form(self):
+        scceen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        x = (scceen_width / 2) - (599 / 2) # trừ nửa chiều rộng form
+        y = (screen_height / 2) - (299 / 2) # trừ nửa chiều cao form
+        self.geometry(f'+{int(x)}+{int(y)}')
+
     def Form1_Load(self):
+        self.Vi_TrI_Form()
         pass
 
     def KiemTraDangNhap(self, taiKhoan, matKhau):

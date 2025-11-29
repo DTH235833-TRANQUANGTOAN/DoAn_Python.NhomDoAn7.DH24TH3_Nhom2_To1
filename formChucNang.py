@@ -50,6 +50,12 @@ class formChucNang(tk.Toplevel):
 
         self.btnThoat = tk.Button(self, text="Thoát", **btn_style, command=self.button7_Click)
         self.btnThoat.place(x=624, y=157, width=167, height=74)
+    def Vi_TrI_Form(self):
+        scceen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        x = (scceen_width / 2) - (955 / 2)
+        y = (screen_height / 2) - (502 / 2)
+        self.geometry(f'+{int(x)}+{int(y)}')
 
     def Form2_Load(self):
         chucVu = ""
@@ -74,7 +80,7 @@ class formChucNang(tk.Toplevel):
             self.btnQuanLyNhanVien['state'] = 'normal'
         else:
             self.btnQuanLyNhanVien['state'] = 'disabled'
-
+        self.Vi_TrI_Form()
     #gọi form khác
     def btnBanHang_Click(self):
         try:

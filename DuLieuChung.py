@@ -11,8 +11,8 @@ class SharedVariables:
         "Trusted_Connection=yes;"
         "TrustServerCertificate=yes;"
     )
-    # Tự động lấy đường dẫn thư mục chứa file code hiện tại
-    base_dir = os.path.dirname(os.path.abspath(__file__))
+    # Tự động lấy đường dẫn thư mục chứa file code hiện tại l
+    base_dir = os.path.dirname(os.path.abspath(__file__)) 
     # Nối thêm folder Icon và tên file
     icon_path = os.path.join(base_dir, "Icon", "cafe_icon.ico")
 

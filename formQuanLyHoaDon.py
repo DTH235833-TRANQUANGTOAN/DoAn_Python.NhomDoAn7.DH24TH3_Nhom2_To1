@@ -15,8 +15,8 @@ class formQuanLyHoaDon(tk.Toplevel):
         self.geometry("1156x700") 
         SharedVariables.set_icon(self)
 
-        self.label1 = tk.Label(self, text="DANH SÁCH HÓA ĐƠN", font=("Segoe UI", 20, "bold"), fg="blue")
-        self.label1.place(x=35, y=10)
+        self.label1 = tk.Label(self, text="DANH SÁCH HÓA ĐƠN", font=("Segoe UI", 20, "bold"), fg="blue") 
+        self.label1.place(x=35, y=340) # LLLLLLLLLLLLLLLLLLL
 
         # Buttons
         self.btnXoa = tk.Button(self, text="Xóa hóa đơn", width=15, command=self.btnXoa_Click)
@@ -44,12 +44,12 @@ class formQuanLyHoaDon(tk.Toplevel):
         self.GridHoaDon.column("MaKH", width=150)
         self.GridHoaDon.column("TongTien", width=200)
 
-        self.GridHoaDon.place(x=12, y=70, width=1132, height=250)
+        self.GridHoaDon.place(x=12, y=380, width=1132, height=250) # LLLLLLLLLLLLLLLLLLL
         
         # BIND EVENT: Khi chọn dòng ở bảng trên -> Load bảng dưới
         self.GridHoaDon.bind("<<TreeviewSelect>>", self.on_invoice_select)
 
-        tk.Label(self, text="CHI TIẾT HÓA ĐƠN", font=("Segoe UI", 16, "bold"), fg="green").place(x=35, y=340)
+        tk.Label(self, text="CHI TIẾT HÓA ĐƠN", font=("Segoe UI", 16, "bold"), fg="green").place(x=35, y=10)  # LLLLLLLLLLLLLLLLLLL
 
         # GridChiTiet (Treeview)
         cols_ct = ("TenSP", "SoLuong", "DonGia", "ThanhTien")
@@ -65,7 +65,7 @@ class formQuanLyHoaDon(tk.Toplevel):
         self.GridChiTiet.column("DonGia", width=200)
         self.GridChiTiet.column("ThanhTien", width=200)
 
-        self.GridChiTiet.place(x=12, y=380, width=1132, height=250)
+        self.GridChiTiet.place(x=12, y=70, width=1132, height=250)  # LLLLLLLLLLLLLLLLLLL
 
     def formQuanLyHoaDon_Load(self):
         self.XemQuyen()

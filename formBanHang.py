@@ -12,18 +12,18 @@ class Form3(tk.Toplevel):
         
         # Data Tables (bảng dữ liệu ảo)
         self._dtSanPham = [] 
-        self._dtKhachHang = []
+        self._dtKhachHang = [] # có MAKH và HOTEN để nhét vô ComboBox
         
         self.Form3_Load()
 
     def InitializeComponent(self):
         self.title("Bán Hàng")
         SharedVariables.set_icon(self)
-        self.geometry("1156x720")
+        self.geometry("1156x620")
         
         # --- Labels & Entries Thông tin nhân viên ---
         tk.Label(self, text="Mã nhân viên:").place(x=16, y=75)
-        self.txtMaNV = tk.Entry(self, width=25); self.txtMaNV.place(x=188, y=68)
+        self.txtMaNV = tk.Entry(self, width=25); self.txtMaNV.place(x=188, y=72)
         
         tk.Label(self, text="Tên nhân viên:").place(x=12, y=120)
         self.txtTenNV = tk.Entry(self, width=25); self.txtTenNV.place(x=188, y=117)
@@ -88,6 +88,12 @@ class Form3(tk.Toplevel):
         tk.Label(self, text="Tổng tiền:").place(x=720, y=491) # Thêm label cho rõ
         self.txtThanhTien = tk.Entry(self, width=25, font=("Arial", 12, "bold"))
         self.txtThanhTien.place(x=822, y=491)
+    def Vi_TrI_Form(self):
+        scceen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        x = (scceen_width / 2) - (1156 / 2)
+        y = (screen_height / 2) - (620 / 2)
+        self.geometry(f'+{int(x)}+{int(y)}') 
 
     def Form3_Load(self):
         self.txtMaNV['state'] = 'disabled'
@@ -97,6 +103,7 @@ class Form3(tk.Toplevel):
         
         self.LayThongTinNV()
         self.LoadSanPhamvaKH()
+        self.Vi_TrI_Form()
 
     def LayThongTinNV(self):
         query = "SELECT MANV, HOTEN, CHUCVU FROM NhanVien WHERE MANV = ?"
